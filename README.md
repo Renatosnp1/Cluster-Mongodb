@@ -44,3 +44,4 @@ A implementação de três Shards com redundância de dados visa maximizar o des
 
 O design do cluster MongoDB foi meticulosamente planejado para atender às necessidades específicas do sistema de gerenciamento de estoque da cadeia de supermercados. A estrutura atual não só cumpre os requisitos atuais de desempenho e escalabilidade mas também está preparada para acomodar o crescimento futuro, garantindo a continuidade e a eficiência das operações comerciais.
 
+<img src="Images/cluster mongodb.png">
