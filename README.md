@@ -44,4 +44,43 @@ A implementação de três Shards com redundância de dados visa maximizar o des
 
 O design do cluster MongoDB foi meticulosamente planejado para atender às necessidades específicas do sistema de gerenciamento de estoque da cadeia de supermercados. A estrutura atual não só cumpre os requisitos atuais de desempenho e escalabilidade mas também está preparada para acomodar o crescimento futuro, garantindo a continuidade e a eficiência das operações comerciais.
 
+## Relatório de Testes
+
+### Metodologia dos Testes
+
+Os testes foram realizados utilizando a técnica de multi-threading, empregando os três roteadores configurados no cluster para inserção de dados. Este método visou simular um ambiente de alta demanda e verificar a capacidade de resposta do sistema sob diferentes volumes de carga. Todos os testes foram conduzidos utilizando operações de inserção (`insert`) no banco de dados.
+
+### Configuração do Ambiente de Testes
+
+Os testes foram executados em um ambiente Docker configurado na seguinte máquina host:
+
+- **Processador:** Intel Core i5-13600K
+- **Memória:** 32GB (2x16GB), DDR5, 6800MHz
+- **Placa Mãe:** AsRock B760M PRO RS, DDR5
+- **GPU:** RTX 4070
+- **SSD:** M.2 NVMe, Leitura: 7400MB/s
+
+### Resultados dos Testes
+
+- **Teste 1:**
+  - **Volume de Dados:** 20.000 linhas
+  - **Tempo Médio de Execução:** 0.446 segundos
+
+- **Teste 2:**
+  - **Volume de Dados:** 6.000.000 linhas
+  - **Tempo Médio de Execução:** 70.569 segundos
+
+- **Teste 3:**
+  - **Volume de Dados:** 8.000.000 linhas
+  - **Tempo Médio de Execução:** 326.939 segundos
+
+### Observações
+
+Foi observada uma perda de desempenho significativa a partir do Teste 2, onde os tempos de inserção aumentaram drasticamente com o incremento no volume de dados. Essa degradação do desempenho torna-se evidente com a inserção simultânea de 6.000.000 de linhas, sugerindo uma possível saturação dos recursos disponíveis nos roteadores. É recomendável uma análise detalhada para determinar se essa perda de desempenho é aceitável para os requisitos operacionais e de negócios da cadeia de supermercados.
+
+## Conclusão
+
+Os resultados indicam que o cluster MongoDB atende aos requisitos de desempenho para operações de baixo e médio volume de dados com eficiência. No entanto, para altos volumes de inserção, como observado nos Testes 2 e 3, é crucial considerar ajustes na configuração ou na arquitetura para manter a performance desejada. Estes resultados fornecem uma base sólida para futuras otimizações e escalonamentos do sistema.
+
+
 <img src="Images/cluster mongodb.png">
